@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <style>
+    body {
+      background: transparent;
+      font-family: Arial, sans-serif;
+      margin: 0;
+    }
+    #container {
+      text-align: center;
+      margin-top: 20px;
+      background: transparent;
+    }
+    .focus-button {
+      background-color: #5BC8E7;
+      color: white;
+      padding: 8px 16px;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      font-size: 14px;
+      margin-right: 10px;
+    }
+  </style>
+</head>
+<body>
+  <div id="container">
+    <button class="focus-button" id="personal">Personal</button>
+    <button class="focus-button" id="work">Work</button>
+    <button class="focus-button" id="tetrafx">TetraFX</button>
+  </div>
+
+  <script>
+    const buttons = document.querySelectorAll('.focus-button');
+
+    // Function to update the button color based on local storage
+    function updateButtonColor(button) {
+      const color = localStorage.getItem(button.id);
+      if (color) {
+        button.style.backgroundColor = color;
+      }
+    }
+
+    // Initialize button colors from local storage
+    buttons.forEach((button) => {
+      updateButtonColor(button);
+    });
+
+    // Event listener for button clicks
+    buttons.forEach((button) => {
+      button.addEventListener("click", () => {
+        const currentColor = getComputedStyle(button).backgroundColor;
+        let newColor = "rgb(255, 165, 0)"; // Default color if not set
+        if (currentColor !== "rgb(255, 165, 0)") {
+          newColor = "rgb(255, 165, 0)"; // Change to this color if not already set
+        }
+        button.style.backgroundColor = newColor;
+        localStorage.setItem(button.id, newColor); // Save the color to local storage
+      });
+    });
+  </script>
+</body>
+</html>
