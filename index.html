@@ -8,27 +8,35 @@
       margin: 0;
     }
     #container {
-      text-align: center;
+      display: flex;
+      align-items: center;
+      justify-content: center;
       margin-top: 20px;
       background: transparent;
     }
+    #focus-text {
+      margin-right: 10px;
+      font-size: 18px;
+    }
     .focus-button {
-      color: white;
+      color: #5BC8E7;
       padding: 8px 16px;
-      border: none;
+      border: 2px solid #5BC8E7;
       border-radius: 10px;
       cursor: pointer;
       font-size: 14px;
       margin-right: 10px;
+      background-color: transparent;
     }
     .focus-button-highlighted {
       background-color: #5BC8E7;
+      color: white;
     }
   </style>
 </head>
 <body>
   <div id="container">
-    <p>Today's Focus</p>
+    <p id="focus-text">Today's Focus</p>
     <button class="focus-button" id="personal">Personal</button>
     <button class="focus-button" id="work">Work</button>
     <button class="focus-button" id="tetrafx">TetraFX</button>
@@ -58,12 +66,12 @@
       button.addEventListener("click", () => {
         const currentColor = getComputedStyle(button).backgroundColor;
         if (currentColor === "rgb(91, 200, 231)") {
-          button.style.backgroundColor = "";
+          button.style.backgroundColor = "transparent";
           button.classList.remove("focus-button-highlighted");
           localStorage.removeItem(button.id); // Remove color from local storage
         } else {
           buttons.forEach((btn) => {
-            btn.style.backgroundColor = "";
+            btn.style.backgroundColor = "transparent";
             btn.classList.remove("focus-button-highlighted");
             localStorage.removeItem(btn.id);
           });
