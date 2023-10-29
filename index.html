@@ -17,12 +17,12 @@
     #focus-text {
       margin-right: 10px;
       font-size: 18px;
-      color: white; /* Set the text color to white */
+      color: white;
     }
     .focus-button {
       color: #5BC8E7;
       padding: 8px 16px;
-      border: 2px solid #5BC8E7;
+      border: 2px solid #f1cc2b; /* Button outline color */
       border-radius: 10px;
       cursor: pointer;
       font-size: 14px;
@@ -30,7 +30,8 @@
       background-color: transparent;
     }
     .focus-button-highlighted {
-      background-color: #5BC8E7;
+      background-color: #f1cc2b; /* Highlight color */
+      border: 2px solid #f1cc2b; /* Button outline color when highlighted */
       color: white;
     }
   </style>
@@ -51,7 +52,7 @@
       const color = localStorage.getItem(button.id);
       if (color) {
         button.style.backgroundColor = color;
-        if (color === "rgb(91, 200, 231)") {
+        if (color === "rgb(241, 204, 43)") {
           button.classList.add("focus-button-highlighted");
         }
       }
@@ -66,19 +67,14 @@
     buttons.forEach((button) => {
       button.addEventListener("click", () => {
         const currentColor = getComputedStyle(button).backgroundColor;
-        if (currentColor === "rgb(91, 200, 231)") {
+        if (currentColor === "rgb(241, 204, 43)") {
           button.style.backgroundColor = "transparent";
           button.classList.remove("focus-button-highlighted");
           localStorage.removeItem(button.id); // Remove color from local storage
         } else {
-          buttons.forEach((btn) => {
-            btn.style.backgroundColor = "transparent";
-            btn.classList.remove("focus-button-highlighted");
-            localStorage.removeItem(btn.id);
-          });
-          button.style.backgroundColor = "rgb(91, 200, 231)";
+          button.style.backgroundColor = "rgb(241, 204, 43)";
           button.classList.add("focus-button-highlighted");
-          localStorage.setItem(button.id, "rgb(91, 200, 231)"); // Save the color to local storage
+          localStorage.setItem(button.id, "rgb(241, 204, 43)"); // Save the color to local storage
         }
       });
     });
